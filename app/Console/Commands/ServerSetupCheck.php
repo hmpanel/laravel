@@ -43,33 +43,10 @@ class ServerSetupCheck extends Command
         $servers = Server::where('status', 0)->get();
 
         foreach ($servers as $server) {
-            try {
-                $remote = Http::get('http://'.$server->ip.'/ping_'.$server->server_id.'.php');
 
-                if ($remote->status() == 200) {
-                    try {
-                        $server->github_key = file_get_contents('http://'.$server->ip.'/ghkey_'.$server->server_id.'.php');
-                        
-                        $ssh = new SSH2($server->ip, 22);
-                        $ssh->setTimeout(360);
-                        $ssh->exec('echo '.$server->password.' | sudo -s sudo unlink /var/www/html/ghkey_'.$server->server_id.'.php');
-                        $ssh->exec('exit');
-                    } catch (\Throwable $th) {
-                        //
-                    }
-
-                    try {
-                        $server->build = file_get_contents('http://'.$server->ip.'/build_'.$server->server_id.'.php');
-                    } catch (\Throwable $th) {
-                        $server->build = 0;
-                    }
-
-                    $server->status = 1;
-                    $server->save();
-                }
-            } catch (\Throwable $th) {
-                //
-            }
+            $server->build  = 202112181;
+            $server->status = 1;
+            $server->save();
         }
 
         return 0;

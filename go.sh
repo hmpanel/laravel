@@ -643,18 +643,6 @@ sudo chmod -R o+w /var/www/html/bootstrap/cache
 sudo chmod -R 775 /var/www/html/bootstrap/cache
 sudo chown -R www-data:cipi /var/www/html
 
-clear
-echo "${bggreen}${black}${bold}"
-echo "Installing PhpMyAdmin 5.2.1 ..."
-echo "${reset}"
-sleep 1s
-
-# Install PhpMyAdmin
-cd /var/www/public && wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
-cd /var/www/public && unzip phpMyAdmin-5.2.1-all-languages.zip
-rm -rf /var/www/public/phpMyAdmin-5.2.1-all-languages.zip
-mv /var/www/public/phpMyAdmin-5.2.1-all-languages/ /var/www/public/pma
-
 
 # LAST STEPS
 clear
@@ -709,15 +697,25 @@ sudo supervisorctl update
 sudo supervisorctl start all
 sudo service supervisor restart
 
+
+clear
+echo "${bggreen}${black}${bold}"
+echo "Installing PhpMyAdmin 5.2.1 ..."
+echo "${reset}"
+sleep 1s
+
+# Install PhpMyAdmin
+cd /var/www/html/public && wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
+cd /var/www/html/public && unzip phpMyAdmin-5.2.1-all-languages.zip
+rm -rf /var/www/html/public/phpMyAdmin-5.2.1-all-languages.zip
+mv /var/www/html/public/phpMyAdmin-5.2.1-all-languages/ /var/www/html/public/phpmyadmin
+
 # COMPLETE
 clear
 echo "${bggreen}${black}${bold}"
 echo "Cipi installation has been completed..."
 echo "${reset}"
 sleep 1s
-
-
-
 
 # SETUP COMPLETE MESSAGE
 clear

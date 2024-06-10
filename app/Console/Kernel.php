@@ -16,7 +16,6 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\ActiveSetupCount::class,
         \App\Console\Commands\LogRotate::class,
         \App\Console\Commands\ServerSetupCheck::class,
-        \App\Console\Commands\CipiUpdate::class,
     ];
 
     /**
@@ -27,8 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('servers:setupcheck')->everyMinute();
-        $schedule->command('cipi:update')->dailyAt('12:05');
+        $schedule->command('servers:setupcheck')->everyMinute();        
         $schedule->command('cipi:logrotate')->dailyAt('00:00');
         $schedule->command('cipi:activesetupcount')->dailyAt('03:03');
     }
