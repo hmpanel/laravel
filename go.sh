@@ -126,7 +126,7 @@ echo "Getting IP..."
 echo "${reset}"
 sleep 1s
 
-IP=$(curl -s https://checkip.amazonaws.com)
+IP=127.0.0.1
 
 
 # MOTD WELCOME MESSAGE
