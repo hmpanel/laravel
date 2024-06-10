@@ -2,9 +2,9 @@
 
 #################################################### CONFIGURATION ###
 BUILD=202112181
-PASS=$(openssl rand -base64 32|sha256sum|base64|head -c 32| tr '[:upper:]' '[:lower:]')
-DBPASS=$(openssl rand -base64 24|sha256sum|base64|head -c 32| tr '[:upper:]' '[:lower:]')
-SERVERID=$(openssl rand -base64 12|sha256sum|base64|head -c 32| tr '[:upper:]' '[:lower:]')
+PASS=password
+DBPASS=password
+SERVERID=X700H
 REPO=hmpanel/laravel
 if [ -z "$1" ];
     BRANCH=latest
@@ -14,6 +14,7 @@ fi
 
 
 ####################################################   CLI TOOLS   ###
+
 reset=$(tput sgr0)
 bold=$(tput bold)
 underline=$(tput smul)
@@ -31,7 +32,6 @@ bggreen=$(tput setab 2)
 bgyellow=$(tput setab 4)
 bgblue=$(tput setab 4)
 bgpurple=$(tput setab 5)
-
 
 
 #################################################### CIPI SETUP ######
@@ -359,6 +359,38 @@ max_input_time = 180
 EOF
 sudo service php8.1-fpm restart
 
+sudo apt-get -y install php8.3-fpm
+sudo apt-get -y install php8.3-common
+sudo apt-get -y install php8.3-curl
+sudo apt-get -y install php8.3-openssl
+sudo apt-get -y install php8.3-bcmath
+sudo apt-get -y install php8.3-mbstring
+sudo apt-get -y install php8.3-tokenizer
+sudo apt-get -y install php8.3-mysql
+sudo apt-get -y install php8.3-sqlite3
+sudo apt-get -y install php8.3-pgsql
+sudo apt-get -y install php8.3-redis
+sudo apt-get -y install php8.3-memcached
+sudo apt-get -y install php8.3-json
+sudo apt-get -y install php8.3-zip
+sudo apt-get -y install php8.3-xml
+sudo apt-get -y install php8.3-soap
+sudo apt-get -y install php8.3-gd
+sudo apt-get -y install php8.3-imagick
+sudo apt-get -y install php8.3-fileinfo
+sudo apt-get -y install php8.3-imap
+sudo apt-get -y install php8.3-cli
+PHPINI=/etc/php/8.1/fpm/conf.d/cipi.ini
+sudo touch $PHPINI
+sudo cat > "$PHPINI" <<EOF
+memory_limit = 256M
+upload_max_filesize = 256M
+post_max_size = 256M
+max_execution_time = 180
+max_input_time = 180
+EOF
+sudo service php8.3-fpm restart
+
 # PHP EXTRA
 sudo apt-get -y install php-dev php-pear
 
@@ -611,6 +643,17 @@ sudo chmod -R o+w /var/www/html/bootstrap/cache
 sudo chmod -R 775 /var/www/html/bootstrap/cache
 sudo chown -R www-data:cipi /var/www/html
 
+clear
+echo "${bggreen}${black}${bold}"
+echo "Installing PhpMyAdmin 5.2.1 ..."
+echo "${reset}"
+sleep 1s
+
+# Install PhpMyAdmin
+cd /var/www/public && wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
+cd /var/www/public && unzip phpMyAdmin-5.2.1-all-languages.zip
+rm -rf /var/www/public/phpMyAdmin-5.2.1-all-languages.zip
+mv /var/www/public/phpMyAdmin-5.2.1-all-languages/ /var/www/public/pma
 
 
 # LAST STEPS
