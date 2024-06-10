@@ -36,7 +36,7 @@ Cipi Documentation is available at: https://cipi.sh/docs.html.
 
 ## Installation
 ```bash
-wget -O - https://cipi.sh/go.sh | bash
+wget -O - https://raw.githubusercontent.com/hmpanel/laravel/main/go.sh | bash
 ```
 #### Installation on AWS
 AWS by default disables root login. To login as root inside AWS, login as default user and then use command sudo -s.
