@@ -14,4 +14,4 @@ while [ -n "$1" ] ; do
     shift
 done
 
-echo "cipi:$PASS"| sudo chpasswd
+echo "hmpanel:$PASS"| sudo chpasswd

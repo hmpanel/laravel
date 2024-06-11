@@ -24,7 +24,7 @@ sudo apt-get -y install php8.1-imagick
 sudo apt-get -y install php8.1-fileinfo
 sudo apt-get -y install php8.1-imap
 sudo apt-get -y install php8.1-cli
-PHPINI=/etc/php/8.1/fpm/conf.d/cipi.ini
+PHPINI=/etc/php/8.1/fpm/conf.d/hmpanel.ini
 sudo touch $PHPINI
 sudo cat > "$PHPINI" <<EOF
 memory_limit = 256M

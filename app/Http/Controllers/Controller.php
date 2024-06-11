@@ -10,8 +10,8 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0",
- *      title="Cipi API Documentation",
- *      description="API Documentation for Cipi Control Panel"
+ *      title="HmPanel API Documentation",
+ *      description="API Documentation for HmPanel Control Panel"
  * )
  *
 */

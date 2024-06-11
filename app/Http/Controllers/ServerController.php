@@ -241,22 +241,22 @@ class ServerController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => __('cipi.bad_request'),
+                'message' => __('hmpanel.bad_request'),
                 'errors' => $validator->errors()->getMessages()
             ], 400);
         }
 
         if ($request->ip == $request->server('SERVER_ADDR')) {
             return response()->json([
-                'message' => __('cipi.server_conflict_ip_current_message'),
-                'errors' => __('cipi.server_conflict')
+                'message' => __('hmpanel.server_conflict_ip_current_message'),
+                'errors' => __('hmpanel.server_conflict')
             ], 409);
         }
 
         if (Server::where('ip', $request->ip)->first()) {
             return response()->json([
-                'message' => __('cipi.server_conflict_ip_duplicate_message'),
-                'errors' => __('cipi.server_conflict')
+                'message' => __('hmpanel.server_conflict_ip_duplicate_message'),
+                'errors' => __('hmpanel.server_conflict')
             ], 409);
         }
 
@@ -328,15 +328,15 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message_default'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message_default'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
         if ($server->default) {
             return response()->json([
-                'message' => __('cipi.delete_default_server_message'),
-                'errors' => __('cipi.bad_request')
+                'message' => __('hmpanel.delete_default_server_message'),
+                'errors' => __('hmpanel.bad_request')
             ], 400);
         }
 
@@ -452,8 +452,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -568,8 +568,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_native_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_native_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -650,8 +650,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_native_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_native_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -667,7 +667,7 @@ class ServerController extends Controller
             ]);
             if ($validator->fails()) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
+                    'message' => __('hmpanel.bad_request'),
                     'errors' => $validator->errors()->getMessages()
                 ], 400);
             }
@@ -726,8 +726,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_native_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_native_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -737,8 +737,8 @@ class ServerController extends Controller
             PanelDomainSslSSH::dispatch($server, $site)->delay(Carbon::now()->addSeconds(3));
         } else {
             return response()->json([
-                'message' => __('cipi.ssl_request_error_message'),
-                'errors' => __('cipi.bad_request')
+                'message' => __('hmpanel.ssl_request_error_message'),
+                'errors' => __('hmpanel.bad_request')
             ], 400);
         }
 
@@ -899,8 +899,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -910,20 +910,20 @@ class ServerController extends Controller
             ]);
             if ($validator->fails()) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
+                    'message' => __('hmpanel.bad_request'),
                     'errors' => $validator->errors()->getMessages()
                 ], 400);
             }
             if (!$server->default && $request->ip == str_replace("\n", '', file_get_contents('https://checkip.amazonaws.com'))) {
                 return response()->json([
-                    'message' => __('cipi.edit_server_current_ip_error_message'),
-                    'errors' => __('cipi.server_conflict')
+                    'message' => __('hmpanel.edit_server_current_ip_error_message'),
+                    'errors' => __('hmpanel.server_conflict')
                 ], 409);
             }
             if (Server::where('ip', $request->ip)->where('server_id', '<>', $server_id)->first()) {
                 return response()->json([
-                    'message' => __('cipi.server_conflict_ip_duplicate_message'),
-                    'errors' => __('cipi.server_conflict')
+                    'message' => __('hmpanel.server_conflict_ip_duplicate_message'),
+                    'errors' => __('hmpanel.server_conflict')
                 ], 409);
             }
             if ($server->default) {
@@ -939,7 +939,7 @@ class ServerController extends Controller
             ]);
             if ($validator->fails()) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
+                    'message' => __('hmpanel.bad_request'),
                     'errors' => $validator->errors()->getMessages()
                 ], 400);
             }
@@ -961,9 +961,9 @@ class ServerController extends Controller
         }
 
         if ($request->php) {
-            if (!in_array($request->php, config('cipi.phpvers'))) {
+            if (!in_array($request->php, config('hmpanel.phpvers'))) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
+                    'message' => __('hmpanel.bad_request'),
                     'errors' => 'Invalid PHP version.'
                 ], 400);
             }
@@ -1036,8 +1036,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -1047,14 +1047,14 @@ class ServerController extends Controller
                 //
             } else {
                 return response()->json([
-                    'message' => __('cipi.server_unavailable_message'),
-                    'errors' => __('cipi.server_unavailable')
+                    'message' => __('hmpanel.server_unavailable_message'),
+                    'errors' => __('hmpanel.server_unavailable')
                 ], 503);
             }
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => __('cipi.server_unavailable_message'),
-                'errors' => __('cipi.server_unavailable')
+                'message' => __('hmpanel.server_unavailable_message'),
+                'errors' => __('hmpanel.server_unavailable')
             ], 503);
         }
     }
@@ -1130,8 +1130,8 @@ class ServerController extends Controller
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -1154,10 +1154,10 @@ class ServerController extends Controller
 
         try {
             $ssh = new SSH2($server->ip, 22);
-            if (!$ssh->login('cipi', $server->password)) {
+            if (!$ssh->login('hmpanel', $server->password)) {
                 return response()->json([
-                    'message' => __('cipi.server_error_ssh_error_message').$server->server_id,
-                    'errors' => __('cipi.server_error')
+                    'message' => __('hmpanel.server_error_ssh_error_message').$server->server_id,
+                    'errors' => __('hmpanel.server_error')
                 ], 500);
             }
             $ssh->setTimeout(360);
@@ -1165,8 +1165,8 @@ class ServerController extends Controller
             $ssh->exec('exit');
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => __('cipi.something_error_message'),
-                'errors' => __('cipi.error')
+                'message' => __('hmpanel.something_error_message'),
+                'errors' => __('hmpanel.error')
             ], 500);
         }
 
@@ -1189,7 +1189,7 @@ class ServerController extends Controller
      *      path="/api/servers/{server_id}/rootreset",
      *      summary="Server root password reset",
      *      tags={"Servers"},
-     *      description="Reset server root password (for cipi user).",
+     *      description="Reset server root password (for hmpanel user).",
      *      @OA\Parameter(
      *          name="Authorization",
      *          description="Use Apikey prefix (e.g. Authorization: Apikey XYZ)",
@@ -1210,7 +1210,7 @@ class ServerController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="password",
-     *                  description="New assigned password for cipi root user",
+     *                  description="New assigned password for hmpanel root user",
      *                  type="string",
      *                  example="Secret_123"
      *              ),
@@ -1231,8 +1231,8 @@ class ServerController extends Controller
         $server = Server::where('server_id', $server_id)->where('status', 1)->first();
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -1302,27 +1302,27 @@ class ServerController extends Controller
     */
     public function servicerestart(string $server_id, string $service)
     {
-        if (!in_array($service, config('cipi.services'))) {
+        if (!in_array($service, config('hmpanel.services'))) {
             return response()->json([
-                'message' => __('cipi.invalid_service_error_message'),
-                'errors' => __('cipi.bad_request')
+                'message' => __('hmpanel.invalid_service_error_message'),
+                'errors' => __('hmpanel.bad_request')
             ], 400);
         }
 
         $server = Server::where('server_id', $server_id)->where('status', 1)->first();
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
         try {
             $ssh = new SSH2($server->ip, 22);
-            if (!$ssh->login('cipi', $server->password)) {
+            if (!$ssh->login('hmpanel', $server->password)) {
                 return response()->json([
-                    'message' => __('cipi.server_error_ssh_error_message').$server->server_id,
-                    'errors' => __('cipi.server_error')
+                    'message' => __('hmpanel.server_error_ssh_error_message').$server->server_id,
+                    'errors' => __('hmpanel.server_error')
                 ], 500);
             }
 
@@ -1355,8 +1355,8 @@ class ServerController extends Controller
             return response()->json([]);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => __('cipi.something_error_message'),
-                'errors' => __('cipi.error')
+                'message' => __('hmpanel.something_error_message'),
+                'errors' => __('hmpanel.error')
             ], 500);
         }
     }
@@ -1444,8 +1444,8 @@ class ServerController extends Controller
         $server = Server::where('server_id', $server_id)->where('status', 1)->first();
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -1509,8 +1509,8 @@ class ServerController extends Controller
         $server = Server::where('server_id', $server_id)->where('status', 1)->first();
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 

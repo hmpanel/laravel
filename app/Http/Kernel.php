@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         ],
         'api' => [
             'throttle:api',
-            \App\Http\Middleware\CipiAuth::class,
+            \App\Http\Middleware\HmPanelAuth::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -88,6 +88,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'cipi.auth' => \App\Http\Middleware\CipiAuth::class,
+        'hmpanel.auth' => \App\Http\Middleware\HmPanelAuth::class,
     ];
 }

@@ -1,20 +1,16 @@
 #!/bin/bash
 
+
+
 #################################################### CONFIGURATION ###
 BUILD=202112181
-PASS=password
-DBPASS=password
-SERVERID=X700H
-REPO=hmpanel/laravel
-if [ -z "$1" ];
-    BRANCH=latest
-then
-    BRANCH=$1
-fi
+PASS=???
+DBPASS=???
+SERVERID=???
+REPO=andreapollastri/hmpanel
 
 
 ####################################################   CLI TOOLS   ###
-
 reset=$(tput sgr0)
 bold=$(tput bold)
 underline=$(tput smul)
@@ -34,7 +30,8 @@ bgblue=$(tput setab 4)
 bgpurple=$(tput setab 5)
 
 
-#################################################### CIPI SETUP ######
+
+#################################################### HMPANEL SETUP ######
 
 
 
@@ -71,7 +68,7 @@ if [ "$ID" = "ubuntu" ]; then
             ;;
         *)
             echo "${bgred}${white}${bold}"
-            echo "Cipi requires Linux Ubuntu 20.04 LTS"
+            echo "HmPanel requires Linux Ubuntu 20.04 LTS"
             echo "${reset}"
             exit 1;
             break
@@ -79,7 +76,7 @@ if [ "$ID" = "ubuntu" ]; then
     esac
 else
     echo "${bgred}${white}${bold}"
-    echo "Cipi requires Linux Ubuntu 20.04 LTS"
+    echo "HmPanel requires Linux Ubuntu 20.04 LTS"
     echo "${reset}"
     exit 1
 fi
@@ -99,7 +96,7 @@ if [ "$(id -u)" = "0" ]; then
 else
     clear
     echo "${bgred}${white}${bold}"
-    echo "You have to run Cipi as root. (In AWS use 'sudo -s')"
+    echo "You have to run HmPanel as root. (In AWS use 'sudo -s')"
     echo "${reset}"
     exit 1
 fi
@@ -117,16 +114,6 @@ sleep 1s
 sudo apt-get update
 sudo apt-get -y install software-properties-common curl wget nano vim rpl sed zip unzip openssl expect dirmngr apt-transport-https lsb-release ca-certificates dnsutils dos2unix zsh htop ffmpeg
 
-
-# GET IP
-clear
-clear
-echo "${bggreen}${black}${bold}"
-echo "Getting IP..."
-echo "${reset}"
-sleep 1s
-
-IP=127.0.0.1
 
 
 # MOTD WELCOME MESSAGE
@@ -177,33 +164,35 @@ alias ll='ls -alF'
 
 
 
-# CIPI DIRS
+# HMPANEL DIRS
 clear
 echo "${bggreen}${black}${bold}"
-echo "Cipi directories..."
+echo "HmPanel directories..."
 echo "${reset}"
 sleep 1s
 
-sudo mkdir /etc/cipi/
-sudo chmod o-r /etc/cipi
-sudo mkdir /var/cipi/
-sudo chmod o-r /var/cipi
+sudo mkdir /etc/hmpanel/
+sudo chmod o-r /etc/hmpanel
+sudo mkdir /var/hmpanel/
+sudo chmod o-r /var/hmpanel
 
 
 
 # USER
 clear
 echo "${bggreen}${black}${bold}"
-echo "Cipi root user..."
+echo "HmPanel root user..."
 echo "${reset}"
 sleep 1s
 
 sudo pam-auth-update --package
 sudo mount -o remount,rw /
 sudo chmod 640 /etc/shadow
-sudo useradd -m -s /bin/bash cipi
-echo "cipi:$PASS"|sudo chpasswd
-sudo usermod -aG sudo cipi
+sudo useradd -m -s /bin/bash hmpanel
+echo "hmpanel:$PASS"|sudo chpasswd
+sudo usermod -aG sudo hmpanel
+
+
 
 
 # NGINX
@@ -284,7 +273,7 @@ sudo apt-get -y install php7.4-imagick
 sudo apt-get -y install php7.4-fileinfo
 sudo apt-get -y install php7.4-imap
 sudo apt-get -y install php7.4-cli
-PHPINI=/etc/php/7.4/fpm/conf.d/cipi.ini
+PHPINI=/etc/php/7.4/fpm/conf.d/hmpanel.ini
 sudo touch $PHPINI
 sudo cat > "$PHPINI" <<EOF
 memory_limit = 256M
@@ -316,7 +305,7 @@ sudo apt-get -y install php8.0-imagick
 sudo apt-get -y install php8.0-fileinfo
 sudo apt-get -y install php8.0-imap
 sudo apt-get -y install php8.0-cli
-PHPINI=/etc/php/8.0/fpm/conf.d/cipi.ini
+PHPINI=/etc/php/8.0/fpm/conf.d/hmpanel.ini
 sudo touch $PHPINI
 sudo cat > "$PHPINI" <<EOF
 memory_limit = 256M
@@ -326,6 +315,7 @@ max_execution_time = 180
 max_input_time = 180
 EOF
 sudo service php8.0-fpm restart
+
 
 sudo apt-get -y install php8.1-fpm
 sudo apt-get -y install php8.1-common
@@ -348,7 +338,7 @@ sudo apt-get -y install php8.1-imagick
 sudo apt-get -y install php8.1-fileinfo
 sudo apt-get -y install php8.1-imap
 sudo apt-get -y install php8.1-cli
-PHPINI=/etc/php/8.1/fpm/conf.d/cipi.ini
+PHPINI=/etc/php/8.1/fpm/conf.d/hmpanel.ini
 sudo touch $PHPINI
 sudo cat > "$PHPINI" <<EOF
 memory_limit = 256M
@@ -359,37 +349,10 @@ max_input_time = 180
 EOF
 sudo service php8.1-fpm restart
 
-sudo apt-get -y install php8.3-fpm
-sudo apt-get -y install php8.3-common
-sudo apt-get -y install php8.3-curl
-sudo apt-get -y install php8.3-openssl
-sudo apt-get -y install php8.3-bcmath
-sudo apt-get -y install php8.3-mbstring
-sudo apt-get -y install php8.3-tokenizer
-sudo apt-get -y install php8.3-mysql
-sudo apt-get -y install php8.3-sqlite3
-sudo apt-get -y install php8.3-pgsql
-sudo apt-get -y install php8.3-redis
-sudo apt-get -y install php8.3-memcached
-sudo apt-get -y install php8.3-json
-sudo apt-get -y install php8.3-zip
-sudo apt-get -y install php8.3-xml
-sudo apt-get -y install php8.3-soap
-sudo apt-get -y install php8.3-gd
-sudo apt-get -y install php8.3-imagick
-sudo apt-get -y install php8.3-fileinfo
-sudo apt-get -y install php8.3-imap
-sudo apt-get -y install php8.3-cli
-PHPINI=/etc/php/8.1/fpm/conf.d/cipi.ini
-sudo touch $PHPINI
-sudo cat > "$PHPINI" <<EOF
-memory_limit = 256M
-upload_max_filesize = 256M
-post_max_size = 256M
-max_execution_time = 180
-max_input_time = 180
-EOF
-sudo service php8.3-fpm restart
+
+# PHP EXTRA
+sudo apt-get -y install php-dev php-pear
+
 
 # PHP EXTRA
 sudo apt-get -y install php-dev php-pear
@@ -430,7 +393,7 @@ echo "${reset}"
 sleep 1s
 
 sudo apt-get -y install git
-sudo ssh-keygen -t rsa -C "git@github.com" -f /etc/cipi/github -q -P ""
+sudo ssh-keygen -t rsa -C "git@github.com" -f /etc/hmpanel/github -q -P ""
 
 
 
@@ -462,7 +425,7 @@ sudo cat > "$NGINX" <<EOF
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    root /var/www/html/public;
+    root /var/www/html;
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-XSS-Protection "1; mode=block";
     add_header X-Content-Type-Options "nosniff";
@@ -487,7 +450,7 @@ server {
     }
 }
 EOF
-sudo mkdir /etc/nginx/cipi/
+sudo mkdir /etc/nginx/hmpanel/
 sudo systemctl restart nginx.service
 
 
@@ -525,8 +488,8 @@ expect eof
 echo "$SECURE_MYSQL"
 /usr/bin/mysql -u root -p$DBPASS <<EOF
 use mysql;
-CREATE USER 'cipi'@'%' IDENTIFIED WITH mysql_native_password BY '$DBPASS';
-GRANT ALL PRIVILEGES ON *.* TO 'cipi'@'%' WITH GRANT OPTION;
+CREATE USER 'hmpanel'@'%' IDENTIFIED WITH mysql_native_password BY '$DBPASS';
+GRANT ALL PRIVILEGES ON *.* TO 'hmpanel'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
 
@@ -565,7 +528,7 @@ echo "${reset}"
 sleep 1s
 
 curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-curl -sL https://deb.nodesource.com/setup16.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 NODE=/etc/apt/sources.list.d/nodesource.list
 sudo unlink NODE
 sudo touch $NODE
@@ -580,70 +543,6 @@ sudo apt -y install npm
 
 
 
-#PANEL INSTALLATION
-clear
-echo "${bggreen}${black}${bold}"
-echo "Panel installation..."
-echo "${reset}"
-sleep 1s
-
-
-/usr/bin/mysql -u root -p$DBPASS <<EOF
-CREATE DATABASE IF NOT EXISTS cipi;
-EOF
-clear
-sudo rm -rf /var/www/html
-cd /var/www && git clone https://github.com/$REPO.git html
-cd /var/www/html && git pull
-cd /var/www/html && git checkout $BRANCH
-cd /var/www/html && git pull
-cd /var/www/html && sudo unlink .env
-cd /var/www/html && sudo cp .env.example .env
-cd /var/www/html && php artisan key:generate
-sudo rpl -i -w "DB_USERNAME=dbuser" "DB_USERNAME=cipi" /var/www/html/.env
-sudo rpl -i -w "DB_PASSWORD=dbpass" "DB_PASSWORD=$DBPASS" /var/www/html/.env
-sudo rpl -i -w "DB_DATABASE=dbname" "DB_DATABASE=cipi" /var/www/html/.env
-sudo rpl -i -w "APP_URL=http://localhost" "APP_URL=http://$IP" /var/www/html/.env
-sudo rpl -i -w "APP_ENV=local" "APP_ENV=production" /var/www/html/.env
-sudo rpl -i -w "CIPISERVERID" $SERVERID /var/www/html/database/seeders/DatabaseSeeder.php
-sudo rpl -i -w "CIPIIP" $IP /var/www/html/database/seeders/DatabaseSeeder.php
-sudo rpl -i -w "CIPIPASS" $PASS /var/www/html/database/seeders/DatabaseSeeder.php
-sudo rpl -i -w "CIPIDB" $DBPASS /var/www/html/database/seeders/DatabaseSeeder.php
-sudo chmod -R o+w /var/www/html/storage
-sudo chmod -R 777 /var/www/html/storage
-sudo chmod -R o+w /var/www/html/bootstrap/cache
-sudo chmod -R 777 /var/www/html/bootstrap/cache
-cd /var/www/html && composer update --no-interaction
-cd /var/www/html && php artisan key:generate
-cd /var/www/html && php artisan cache:clear
-cd /var/www/html && php artisan storage:link
-cd /var/www/html && php artisan view:cache
-cd /var/www/html && php artisan cipi:activesetupcount
-CIPIBULD=/var/www/html/public/build_$SERVERID.php
-sudo touch $CIPIBULD
-sudo cat > $CIPIBULD <<EOF
-$BUILD
-EOF
-CIPIPING=/var/www/html/public/ping_$SERVERID.php
-sudo touch $CIPIPING
-sudo cat > $CIPIPING <<EOF
-Up
-EOF
-PUBKEYGH=/var/www/html/public/ghkey_$SERVERID.php
-sudo touch $PUBKEYGH
-sudo cat > $PUBKEYGH <<EOF
-<?php
-echo exec("cat /etc/cipi/github.pub");
-EOF
-cd /var/www/html && php artisan migrate --seed --force
-cd /var/www/html && php artisan config:cache
-sudo chmod -R o+w /var/www/html/storage
-sudo chmod -R 775 /var/www/html/storage
-sudo chmod -R o+w /var/www/html/bootstrap/cache
-sudo chmod -R 775 /var/www/html/bootstrap/cache
-sudo chown -R www-data:cipi /var/www/html
-
-
 # LAST STEPS
 clear
 echo "${bggreen}${black}${bold}"
@@ -651,14 +550,12 @@ echo "Last steps..."
 echo "${reset}"
 sleep 1s
 
-sudo chown www-data:cipi -R /var/www/html
+sudo chown www-data:hmpanel -R /var/www/html
 sudo chmod -R 750 /var/www/html
-sudo echo 'DefaultStartLimitIntervalSec=1s' >> /usr/lib/systemd/system/user@.service
-sudo echo 'DefaultStartLimitBurst=50' >> /usr/lib/systemd/system/user@.service
 sudo echo 'StartLimitBurst=0' >> /usr/lib/systemd/system/user@.service
 sudo systemctl daemon-reload
 
-TASK=/etc/cron.d/cipi.crontab
+TASK=/etc/cron.d/hmpanel.crontab
 touch $TASK
 cat > "$TASK" <<EOF
 10 4 * * 7 certbot renew --nginx --non-interactive --post-hook "systemctl restart nginx.service"
@@ -667,7 +564,7 @@ cat > "$TASK" <<EOF
 20 5 * * 7 apt-get clean && apt-get autoclean
 50 5 * * * echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a
 * * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1
-5 2 * * * cd /var/www/html/utility/cipi-update && sh run.sh >> /dev/null 2>&1
+5 2 * * * cd /var/www/html/utility/hmpanel-update && sh run.sh >> /dev/null 2>&1
 EOF
 crontab $TASK
 sudo systemctl restart nginx.service
@@ -676,46 +573,41 @@ sudo rpl -i -w "# PasswordAuthentication" "PasswordAuthentication" /etc/ssh/sshd
 sudo rpl -i -w "PasswordAuthentication no" "PasswordAuthentication yes" /etc/ssh/sshd_config
 sudo rpl -i -w "PermitRootLogin yes" "PermitRootLogin no" /etc/ssh/sshd_config
 sudo service sshd restart
-TASK=/etc/supervisor/conf.d/cipi.conf
-touch $TASK
-cat > "$TASK" <<EOF
-[program:cipi-worker]
-process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/artisan queue:work --sleep=3 --tries=3 --max-time=3600
-autostart=true
-autorestart=true
-stopasgroup=true
-killasgroup=true
-user=cipi
-numprocs=8
-redirect_stderr=true
-stdout_logfile=/var/www/worker.log
-stopwaitsecs=3600
+wget -P /var/www/html/ - https://raw.githubusercontent.com/$REPO/latest/utility/zero-page/index.php
+HMPANELBULD=/var/www/html/build_$SERVERID.php
+sudo touch $HMPANELBULD
+sudo cat > "$HMPANELBULD" <<EOF
+$BUILD
 EOF
-sudo supervisorctl reread
-sudo supervisorctl update
-sudo supervisorctl start all
-sudo service supervisor restart
+HMPANELPING=/var/www/html/ping_$SERVERID.php
+sudo touch $HMPANELPING
+sudo cat > "$HMPANELPING" <<EOF
+Up
+EOF
+ARTISAN=/var/www/html/artisan
+sudo touch $ARTISAN
+UPDATE=/var/www/html/utility/hmpanel-update/run.sh
+sudo touch $UPDATE
+PUBKEYGH=/var/www/html/ghkey_$SERVERID.php
+sudo touch $PUBKEYGH
+sudo cat > "$PUBKEYGH" <<EOF
+<?php
+echo exec("cat /etc/hmpanel/github.pub");
+EOF
 
 
-clear
-echo "${bggreen}${black}${bold}"
-echo "Installing PhpMyAdmin 5.2.1 ..."
-echo "${reset}"
-sleep 1s
 
-# Install PhpMyAdmin
-cd /var/www/html/public && wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
-cd /var/www/html/public && unzip phpMyAdmin-5.2.1-all-languages.zip
-rm -rf /var/www/html/public/phpMyAdmin-5.2.1-all-languages.zip
-mv /var/www/html/public/phpMyAdmin-5.2.1-all-languages/ /var/www/html/public/phpmyadmin
+
 
 # COMPLETE
 clear
 echo "${bggreen}${black}${bold}"
-echo "Cipi installation has been completed..."
+echo "HmPanel installation has been completed..."
 echo "${reset}"
 sleep 1s
+
+
+
 
 # SETUP COMPLETE MESSAGE
 clear
@@ -723,14 +615,10 @@ echo "***********************************************************"
 echo "                    SETUP COMPLETE"
 echo "***********************************************************"
 echo ""
-echo " SSH root user: cipi"
+echo " SSH root user: hmpanel"
 echo " SSH root pass: $PASS"
-echo " MySQL root user: cipi"
+echo " MySQL root user: hmpanel"
 echo " MySQL root pass: $DBPASS"
-echo ""
-echo " To manage your server visit: http://$IP"
-echo " and click on 'dashboard' button."
-echo " Default credentials are: administrator / 12345678"
 echo ""
 echo "***********************************************************"
 echo "          DO NOT LOSE AND KEEP SAFE THIS DATA"

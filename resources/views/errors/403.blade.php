@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="robots" content="noindex, nofollow">
         <meta name="googlebot" content="noindex">
-        <title>{{ config('cipi.name') }} | {{ __('cipi.forbidden') }}</title>
+        <title>{{ config('hmpanel.name') }} | {{ __('hmpanel.forbidden') }}</title>
         <link href="/assets/css/app.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
     </head>
@@ -22,10 +22,10 @@
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
                                     <img class="mb-4 img-error" src="/assets/img/forbidden.jpg" />
-                                    <p class="lead"><b>{{ __('cipi.error') }} 403</b> | {{ __('cipi.forbidden') }}</p>
+                                    <p class="lead"><b>{{ __('hmpanel.error') }} 403</b> | {{ __('hmpanel.forbidden') }}</p>
                                     <a href="/">
                                         <i class="fas fa-arrow-left mr-1"></i>
-                                        {{ __('cipi.return_to_dashboard') }}
+                                        {{ __('hmpanel.return_to_dashboard') }}
                                     </a>
                                 </div>
                             </div>

@@ -19,7 +19,7 @@ class ConfController extends Controller
     {
         $server = Server::where('server_id', $server_id)->where('status', 1)->firstOrFail();
 
-        $script = Storage::get('cipi/cron.conf');
+        $script = Storage::get('hmpanel/cron.conf');
         if ($server->cron) {
             $script = Str::replaceArray('???', [
                 $server->cron
@@ -36,7 +36,7 @@ class ConfController extends Controller
 
 
     /**
-     * Cipi nginx configuration
+     * HmPanel nginx configuration
      *
     */
     public function panel()
@@ -44,7 +44,7 @@ class ConfController extends Controller
         $server = Server::where('default', 1)->firstOrFail();
 
         $site = Site::where('server_id', $server->id)->where('panel', 1)->firstOrFail();
-        $script = Storage::get('cipi/panel.conf');
+        $script = Storage::get('hmpanel/panel.conf');
         $script = Str::replaceArray('???', [
             $site->domain
         ], $script);
@@ -68,7 +68,7 @@ class ConfController extends Controller
             $basepath = '/home/'.$site->username.'/web';
         }
 
-        $script = Storage::get('cipi/host.conf');
+        $script = Storage::get('hmpanel/host.conf');
         $script = str_replace('???USER???', $site->username, $script);
         $script = str_replace('???BASE???', $basepath, $script);
         $script = str_replace('???PHP???', $site->php, $script);
@@ -92,7 +92,7 @@ class ConfController extends Controller
             $basepath = '/home/'.$alias->site->username.'/web';
         }
 
-        $script = Storage::get('cipi/host.conf');
+        $script = Storage::get('hmpanel/host.conf');
         $script = str_replace('???USER???', $alias->site->username, $script);
         $script = str_replace('???BASE???', $basepath, $script);
         $script = str_replace('???PHP???', $alias->site->php, $script);
@@ -110,7 +110,7 @@ class ConfController extends Controller
     {
         $site = Site::where('site_id', $site_id)->firstOrFail();
         
-        $script = Storage::get('cipi/php.conf');
+        $script = Storage::get('hmpanel/php.conf');
         $script = str_replace('???USER???', $site->username, $script);
         $script = str_replace('???PHP???', $site->php, $script);
         return response($script)->withHeaders(['Content-Type' =>'text/plain']);
@@ -123,7 +123,7 @@ class ConfController extends Controller
     */
     public function nginx()
     {
-        $script = Storage::get('cipi/nginx.conf');
+        $script = Storage::get('hmpanel/nginx.conf');
         return response($script)->withHeaders(['Content-Type' =>'text/plain']);
     }
 
@@ -134,7 +134,7 @@ class ConfController extends Controller
     */
     public function supervisor()
     {
-        $script = Storage::get('cipi/supervisor.conf');
+        $script = Storage::get('hmpanel/supervisor.conf');
         return response($script)->withHeaders(['Content-Type' =>'text/plain']);
     }
 }

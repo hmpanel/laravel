@@ -8,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="robots" content="noindex, nofollow">
         <meta name="googlebot" content="noindex">
-        <title>{{ config('cipi.name') }} | @yield('title')</title>
-        <meta name="cipi-version" content="{{ Storage::get('cipi/version.md') }}">
+        <title>{{ config('hmpanel.name') }} | @yield('title')</title>
+        <meta name="hmpanel-version" content="{{ Storage::get('hmpanel/version.md') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
         <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="/dashboard"><i class="fab fa-fw fa-linux"></i> {{ config('cipi.name') }}</a>
+            <a class="navbar-brand" href="/dashboard"><i class="fab fa-fw fa-linux"></i> {{ config('hmpanel.name') }}</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0  d-lg-none" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         </nav>
         <div id="layoutSidenav">
@@ -52,34 +52,34 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">{{ __('cipi.menu') }}</div>
+                            <div class="sb-sidenav-menu-heading">{{ __('hmpanel.menu') }}</div>
                             <a class="nav-link {{ request()->is('dashboard*') ? 'active' : '' }}" href="/dashboard">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-th-large"></i></div>
-                                {{ __('cipi.sidebar_menu.dashboard') }}
+                                {{ __('hmpanel.sidebar_menu.dashboard') }}
                             </a>
                             <a class="nav-link {{ request()->is('servers*') ? 'active' : '' }}" href="/servers">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-server"></i></div>
-                                {{ __('cipi.sidebar_menu.servers') }}
+                                {{ __('hmpanel.sidebar_menu.servers') }}
                             </a>
                             <a class="nav-link {{ request()->is('sites*') ? 'active' : '' }}" href="/sites">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-rocket"></i></div>
-                                {{ __('cipi.sidebar_menu.sites') }}
+                                {{ __('hmpanel.sidebar_menu.sites') }}
                             </a>
                             <a class="nav-link {{ request()->is('settings*') ? 'active' : '' }}" href="/settings">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-cog"></i></div>
-                                {{ __('cipi.sidebar_menu.settings') }}
+                                {{ __('hmpanel.sidebar_menu.settings') }}
                             </a>
                             <a class="nav-link" href="#" id="logout">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-sign-out-alt"></i></div>
-                                {{ __('cipi.sidebar_menu.logout') }}
+                                {{ __('hmpanel.sidebar_menu.logout') }}
                             </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">{{ __('cipi.panel_version') }}:</div>
+                        <div class="small">{{ __('hmpanel.panel_version') }}:</div>
                         <span id="panelversion"></span>
                         <div class="space"></div>
-                        <div class="small">{{ __('cipi.logged_in_as') }}:</div>
+                        <div class="small">{{ __('hmpanel.logged_in_as') }}:</div>
                         <span id="username"></span>
                     </div>
                 </nav>
@@ -124,20 +124,20 @@
                 </main>
             </div>
             <div id="mainloading" class="d-none">
-                <p><i class="fas fa-circle-notch fa-spin" id="mainloadingicon"></i> {{ __('cipi.loading_data') }}...</p>
+                <p><i class="fas fa-circle-notch fa-spin" id="mainloadingicon"></i> {{ __('hmpanel.loading_data') }}...</p>
             </div>
             @yield('extra')
             <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="errorModalLabel">{{ __('cipi.system_error') }}</h5>
+                            <h5 class="modal-title" id="errorModalLabel">{{ __('hmpanel.system_error') }}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>{{ __('cipi.unknown_error') }}</p>
+                            <p>{{ __('hmpanel.unknown_error') }}</p>
                             <div class="space"></div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
 
             //Vars in Page
             $('#username').html(localStorage.username);
-            $('#panelversion').html($('meta[name="cipi-version"]').attr('content'));
+            $('#panelversion').html($('meta[name="hmpanel-version"]').attr('content'));
 
             //Success notification
             function success(text) {

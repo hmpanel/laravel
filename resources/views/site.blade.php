@@ -2,7 +2,7 @@
 
 
 @section('title')
-    {{ __('cipi.titles.site') }}
+    {{ __('hmpanel.titles.site') }}
 @endsection
 
 
@@ -10,30 +10,30 @@
 @section('content')
 <ol class="breadcrumb mb-4">
     <li class="ml-1 breadcrumb-item active">IP:<b><span class="ml-1" id="siteip"></span></b></li>
-    <li class="ml-1 breadcrumb-item active">{{ __('cipi.aliases') }}:<b><span class="ml-1" id="sitealiases"></span></b></li>
+    <li class="ml-1 breadcrumb-item active">{{ __('hmpanel.aliases') }}:<b><span class="ml-1" id="sitealiases"></span></b></li>
     <li class="ml-1 breadcrumb-item active">PHP:<b><span class="ml-1" id="sitephp"></span></b></li>
-    <li class="ml-1 breadcrumb-item active">{{ __('cipi.site_base_path') }}:<b><span class="ml-1">/home/</span><span id="siteuserinfo"></span>/web/<span id="sitebasepathinfo"></span></b></li>
+    <li class="ml-1 breadcrumb-item active">{{ __('hmpanel.site_base_path') }}:<b><span class="ml-1">/home/</span><span id="siteuserinfo"></span>/web/<span id="sitebasepathinfo"></span></b></li>
 </ol>
 <div class="row">
     <div class="col-xl-6">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-info-circle fs-fw mr-1"></i>
-                {{ __('cipi.basic_information') }}
+                {{ __('hmpanel.basic_information') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.domain') }}:</p>
+                <p>{{ __('hmpanel.domain') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. domain.ltd" id="sitedomain" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.site_base_path') }}:</p>
+                <p>{{ __('hmpanel.site_base_path') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. public" id="sitebasepath" autocomplete="off" />
                 </div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="updateSite">{{ __('cipi.update') }} <i class="fas fa-circle-notch fa-spin d-none" id="updateSiteloading"></i></button>
+                    <button class="btn btn-primary" type="button" id="updateSite">{{ __('hmpanel.update') }} <i class="fas fa-circle-notch fa-spin d-none" id="updateSiteloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -43,10 +43,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-globe fs-fw mr-1"></i>
-                {{ __('cipi.manage_aliases') }}
+                {{ __('hmpanel.manage_aliases') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.add_alias') }}:</p>
+                <p>{{ __('hmpanel.add_alias') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. www.domain.ltd" id="siteaddalias" autocomplete="off" />
                     <div class="input-group-append">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="space"></div>
                 <div style="min-height:135px">
-                    <p>{{ __('cipi.aliases') }}:</p>
+                    <p>{{ __('hmpanel.aliases') }}:</p>
                     <div id="sitealiaseslist"></div>
                 </div>
                 <div class="space"></div>
@@ -68,14 +68,14 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-lock fs-fw mr-1"></i>
-                {{ __('cipi.ssl_security') }}
+                {{ __('hmpanel.ssl_security') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.ssl_security_text') }}:</p>
-                <button class="btn btn-success btn" type="button" id="sitessl">{{ __('cipi.ssl_generate') }} <i class="fas fa-circle-notch fa-spin d-none" id="sitesslloading"></i></button>
+                <p>{{ __('hmpanel.ssl_security_text') }}:</p>
+                <button class="btn btn-success btn" type="button" id="sitessl">{{ __('hmpanel.ssl_generate') }} <i class="fas fa-circle-notch fa-spin d-none" id="sitesslloading"></i></button>
                 <div class="space"></div>
                 <div class="space"></div>
-                <p>{{ __('cipi.password_resets') }}:</p>
+                <p>{{ __('hmpanel.password_resets') }}:</p>
                 <button class="btn btn-warning btn mr-3" type="button" id="sitesshreset">SSH</button>
                 <button class="btn btn-warning btn mr-3" type="button" id="sitemysqlreset">MySql</button>
                 <div class="space" style="min-height:38px"></div>
@@ -86,20 +86,20 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fab fa-github fs-fw mr-1"></i>
-                {{ __('cipi.github_repository') }}
+                {{ __('hmpanel.github_repository') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.github_repository_setup') }}</p>
+                <p>{{ __('hmpanel.github_repository_setup') }}</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" style="min-width:200px" id="sitesetrepo">{{ __('cipi.github_repository_config') }}</button>
+                    <button class="btn btn-warning" type="button" style="min-width:200px" id="sitesetrepo">{{ __('hmpanel.github_repository_config') }}</button>
                     <div class="space"></div>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" style="min-width:200px" id="editdeploy">{{ __('cipi.github_repository_scripts') }}</button>
+                    <button class="btn btn-warning" type="button" style="min-width:200px" id="editdeploy">{{ __('hmpanel.github_repository_scripts') }}</button>
                     <div class="space"></div>
                 </div>
                 <p>
-                    {{ __('cipi.github_repository_deploy') }}:
+                    {{ __('hmpanel.github_repository_deploy') }}:
                     <ul style="font-size:14px;">
                         <li>ssh <span id="repodeployinfouser1"></span>@<span id="repodeployinfoip"></span></li>
                         <li>sh /home/<span id="repodeployinfouser2"></span>/git/deploy.sh</li>
@@ -112,10 +112,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-tools fs-fw mr-1"></i>
-                {{ __('cipi.tools') }}
+                {{ __('hmpanel.tools') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.php_fpm_version') }}:</p>
+                <p>{{ __('hmpanel.php_fpm_version') }}:</p>
                 <div class="input-group">
                     <select class="form-control" id="sitephpver">
                         <option value="8.1" id="php81">8.1</option>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="sitesupervisorupdate">{{ __('cipi.update') }} <i class="fas fa-circle-notch fa-spin d-none" id="sitesupervisorupdateloading"></i></button>
+                    <button class="btn btn-primary" type="button" id="sitesupervisorupdate">{{ __('hmpanel.update') }} <i class="fas fa-circle-notch fa-spin d-none" id="sitesupervisorupdateloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -151,29 +151,29 @@
     <div class="modal-dialog" role="document" id="repositorydialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="repositoryModalLabel">{{ __('cipi.github_repository') }}</h5>
+                <h5 class="modal-title" id="repositoryModalLabel">{{ __('hmpanel.github_repository') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <label for="repositoryproject">{{ __('cipi.repository_project') }}</label>
+                <label for="repositoryproject">{{ __('hmpanel.repository_project') }}</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="repositoryproject" placeholder="e.g. johndoe/helloworld" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <label for="repositorybranch">{{ __('cipi.repository_branch') }}</label>
+                <label for="repositorybranch">{{ __('hmpanel.repository_branch') }}</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="repositorybranch" placeholder="e.g. develop" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <label for="deploykey">{{ __('cipi.repository_deploy_key') }} {!! __('cipi.repository_deploy_key_info') !!}</label>
+                <label for="deploykey">{{ __('hmpanel.repository_deploy_key') }} {!! __('hmpanel.repository_deploy_key_info') !!}</label>
                 <div class="input-group">
                     <textarea id="deploykey" readonly style="width:100%;height:150px;font-size:10px;"></textarea>
                 </div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="repositorysubmit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="repositoryloading"></i></button>
+                    <button class="btn btn-primary" type="button" id="repositorysubmit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="repositoryloading"></i></button>
                 </div>
             </div>
         </div>
@@ -183,17 +183,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deployModalLabel">{{ __('cipi.deploy_scripts') }}</h5>
+                <h5 class="modal-title" id="deployModalLabel">{{ __('hmpanel.deploy_scripts') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.github_repository_scripts') }}:</p>
+                <p>{{ __('hmpanel.github_repository_scripts') }}:</p>
                 <div id="deploy" style="height:250px;width:100%;"></div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="deploysubmit">{{ __('cipi.save') }} <i class="fas fa-circle-notch fa-spin d-none" id="deployloading"></i></button>
+                    <button class="btn btn-primary" type="button" id="deploysubmit">{{ __('hmpanel.save') }} <i class="fas fa-circle-notch fa-spin d-none" id="deployloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -204,16 +204,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="sshresetModalLabel">{{ __('cipi.require_password_reset_modal_title') }}</h5>
+                <h5 class="modal-title" id="sshresetModalLabel">{{ __('hmpanel.require_password_reset_modal_title') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.require_ssh_password_reset_modal_text') }}</p>
+                <p>{{ __('hmpanel.require_ssh_password_reset_modal_text') }}</p>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-danger" type="button" id="sshresetsubmit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="sshresetloading"></i></button>
+                    <button class="btn btn-danger" type="button" id="sshresetsubmit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="sshresetloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -224,16 +224,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mysqlresetModalLabel">{{ __('cipi.require_password_reset_modal_title') }}</h5>
+                <h5 class="modal-title" id="mysqlresetModalLabel">{{ __('hmpanel.require_password_reset_modal_title') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.require_mysql_password_reset_modal_text') }}</p>
+                <p>{{ __('hmpanel.require_mysql_password_reset_modal_text') }}</p>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-danger" type="button" id="mysqlresetsubmit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="mysqlresetloading"></i></button>
+                    <button class="btn btn-danger" type="button" id="mysqlresetsubmit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="mysqlresetloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -330,7 +330,7 @@
                 $('#sshresetloading').removeClass('d-none');
             },
             success: function(data) {
-                success('{{ __('cipi.new_ssh_password_success') }}:<br><b>'+data.password+'</b><br><a href="'+data.pdf+'" target="_blank" style="color:#ffffff">{{ __('cipi.download_site_data') }}</a>');
+                success('{{ __('hmpanel.new_ssh_password_success') }}:<br><b>'+data.password+'</b><br><a href="'+data.pdf+'" target="_blank" style="color:#ffffff">{{ __('hmpanel.download_site_data') }}</a>');
                 $('#sshresetloading').addClass('d-none');
                 $('#sshresetModal').modal('toggle');
                 $(window).scrollTop(0);
@@ -350,7 +350,7 @@
                 $('#mysqlresetloading').removeClass('d-none');
             },
             success: function(data) {
-                success('{{ __('cipi.new_mysql_password_success') }}:<br><b>'+data.password+'</b><br><a href="'+data.pdf+'" target="_blank" style="color:#ffffff">{{ __('cipi.download_site_data') }}</a>');
+                success('{{ __('hmpanel.new_mysql_password_success') }}:<br><b>'+data.password+'</b><br><a href="'+data.pdf+'" target="_blank" style="color:#ffffff">{{ __('hmpanel.download_site_data') }}</a>');
                 $('#mysqlresetloading').addClass('d-none');
                 $('#mysqlresetModal').modal('toggle');
                 $(window).scrollTop(0);

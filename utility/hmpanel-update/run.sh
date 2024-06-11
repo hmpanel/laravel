@@ -10,5 +10,5 @@ cd /var/www/html && php artisan cache:clear
 cd /var/www/html && php artisan view:cache
 cd /var/www/html && php artisan config:cache
 cd /var/www/html && php artisan migrate --force
-sudo chown -R www-data:cipi /var/www/html
+sudo chown -R www-data:hmpanel /var/www/html
 sudo chmod -R 750 /var/www/html

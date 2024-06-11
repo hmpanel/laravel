@@ -26,8 +26,8 @@ class AuthController extends Controller
 
         if (!$user) {
             return response()->json([
-                'message' => __('cipi.invalid_login_message'),
-                'errors' => __('cipi.invalid_login')
+                'message' => __('hmpanel.invalid_login_message'),
+                'errors' => __('hmpanel.invalid_login')
             ], 401);
         }
 
@@ -52,16 +52,16 @@ class AuthController extends Controller
 
         if (!$user) {
             return response()->json([
-                'message' => __('cipi.invalid_login_message'),
-                'errors' => __('cipi.invalid_login')
+                'message' => __('hmpanel.invalid_login_message'),
+                'errors' => __('hmpanel.invalid_login')
             ], 401);
         }
 
-        $user->jwt = JWT::encode(['iat' => time(),'exp' => time() + config('cipi.jwt_refresh')], config('cipi.jwt_secret').'-Rfs');
+        $user->jwt = JWT::encode(['iat' => time(),'exp' => time() + config('hmpanel.jwt_refresh')], config('hmpanel.jwt_secret').'-Rfs');
         $user->save();
 
         return response()->json([
-            'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('cipi.jwt_access')], config('cipi.jwt_secret').'-Acs'),
+            'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('hmpanel.jwt_access')], config('hmpanel.jwt_secret').'-Acs'),
             'refresh_token' => $user->jwt,
             'username' => $user->username
         ]);
@@ -82,17 +82,17 @@ class AuthController extends Controller
         $user = Auth::check($request->username, $request->refresh_token);
 
         if ($user) {
-            $user->jwt = JWT::encode(['iat' => time(),'exp' => time() + config('cipi.jwt_refresh')], config('cipi.jwt_secret').'-Rfs');
+            $user->jwt = JWT::encode(['iat' => time(),'exp' => time() + config('hmpanel.jwt_refresh')], config('hmpanel.jwt_secret').'-Rfs');
             $user->save();
             return response()->json([
-                'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('cipi.jwt_access')], config('cipi.jwt_secret').'-Acs'),
+                'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('hmpanel.jwt_access')], config('hmpanel.jwt_secret').'-Acs'),
                 'refresh_token' => $user->jwt,
                 'username' => $user->username
             ]);
         } else {
             return response()->json([
-                'message' => __('cipi.invalid_token_message'),
-                'errors' => __('cipi.invalid_token')
+                'message' => __('hmpanel.invalid_token_message'),
+                'errors' => __('hmpanel.invalid_token')
             ], 401);
         }
     }
@@ -113,8 +113,8 @@ class AuthController extends Controller
 
         if (!$user) {
             return response()->json([
-                'message' => __('cipi.invalid_login_message'),
-                'errors' => __('cipi.invalid_login')
+                'message' => __('hmpanel.invalid_login_message'),
+                'errors' => __('hmpanel.invalid_login')
             ], 401);
         }
 
@@ -129,8 +129,8 @@ class AuthController extends Controller
                 $user->username = $newuser;
             } else {
                 return response()->json([
-                    'message' => __('cipi.username_conflict_message'),
-                    'errors' => __('cipi.username_conflict')
+                    'message' => __('hmpanel.username_conflict_message'),
+                    'errors' => __('hmpanel.username_conflict')
                 ], 409);
             }
         }
@@ -149,7 +149,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('cipi.jwt_access')], config('cipi.jwt_secret').'-Acs'),
+            'access_token' => JWT::encode(['iat' => time(),'exp' => time() + config('hmpanel.jwt_access')], config('hmpanel.jwt_secret').'-Acs'),
             'refresh_token' => $user->jwt,
             'username' => $user->username,
             'apikey' => $user->apikey
@@ -174,8 +174,8 @@ class AuthController extends Controller
             $user->save();
         } else {
             return response()->json([
-                'message' => __('cipi.invalid_token_message'),
-                'errors' => __('cipi.invalid_token')
+                'message' => __('hmpanel.invalid_token_message'),
+                'errors' => __('hmpanel.invalid_token')
             ], 401);
         }
     }

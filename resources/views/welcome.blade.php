@@ -6,7 +6,7 @@
         <meta name="robots" content="noindex, nofollow">
         <meta name="googlebot" content="noindex">
 
-        <title>{{ config('cipi.name') }}</title>
+        <title>{{ config('hmpanel.name') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -73,13 +73,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{ config('cipi.name') }}
+                    {{ config('hmpanel.name') }}
                 </div>
 
                 <div class="links">
-                    <a target="_blank" href="{{ config('cipi.website') }}">Website</a>
-                    <a target="_blank" href="{{ config('cipi.documentation') }}">Documentation</a>
-                    <a target="_blank" href="{{ config('cipi.app') }}">Mobile App</a>
+                    <a target="_blank" href="{{ config('hmpanel.website') }}">Website</a>
+                    <a target="_blank" href="{{ config('hmpanel.documentation') }}">Documentation</a>
+                    <a target="_blank" href="{{ config('hmpanel.app') }}">Mobile App</a>
                 </div>
             </div>
         </div>

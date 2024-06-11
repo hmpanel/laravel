@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Cipi API Documentation',
+                'title' => 'HmPanel API Documentation',
             ],
 
             'routes' => [

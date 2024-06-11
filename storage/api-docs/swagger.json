@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Cipi API Documentation",
-        "description": "API Documentation for Cipi Control Panel",
+        "title": "HmPanel API Documentation",
+        "description": "API Documentation for HmPanel Control Panel",
         "version": "1.0"
     },
     "paths": {
@@ -788,7 +788,7 @@
                     "Servers"
                 ],
                 "summary": "Server root password reset",
-                "description": "Reset server root password (for cipi user).",
+                "description": "Reset server root password (for hmpanel user).",
                 "operationId": "App\\Http\\Controllers\\ServerController::rootreset",
                 "parameters": [
                     {
@@ -818,7 +818,7 @@
                                 "schema": {
                                     "properties": {
                                         "password": {
-                                            "description": "New assigned password for cipi root user",
+                                            "description": "New assigned password for hmpanel root user",
                                             "type": "string",
                                             "example": "Secret_123"
                                         }
@@ -1341,7 +1341,7 @@
                                         "repository": {
                                             "description": "Github repository",
                                             "type": "string",
-                                            "example": "andreapollastri/cipi"
+                                            "example": "andreapollastri/hmpanel"
                                         },
                                         "branch": {
                                             "description": "Git branch",
@@ -1482,7 +1482,7 @@
                                     "repository": {
                                         "description": "Github repository",
                                         "type": "string",
-                                        "example": "andreapollastri/cipi"
+                                        "example": "andreapollastri/hmpanel"
                                     },
                                     "branch": {
                                         "description": "Git branch",
@@ -1564,7 +1564,7 @@
                                         "repository": {
                                             "description": "Github repository",
                                             "type": "string",
-                                            "example": "andreapollastri/cipi"
+                                            "example": "andreapollastri/hmpanel"
                                         },
                                         "branch": {
                                             "description": "Git branch",

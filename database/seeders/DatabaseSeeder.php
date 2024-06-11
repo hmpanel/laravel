@@ -20,17 +20,17 @@ class DatabaseSeeder extends Seeder
         Auth::query()->truncate();
 
         Auth::create([
-            'username' => config('cipi.username'),
-            'password' => Hash::make(config('cipi.password')),
+            'username' => config('hmpanel.username'),
+            'password' => Hash::make(config('hmpanel.password')),
             'apikey' => Str::random(48)
         ]);
 
         Server::create([
-            'server_id' => strtolower('CIPISERVERID'),
+            'server_id' => strtolower('HMPANELSERVERID'),
             'name' => 'This VPS!',
-            'ip' => 'CIPIIP',
-            'password' => strtolower('CIPIPASS'),
-            'database' => strtolower('CIPIDB'),
+            'ip' => 'HMPANELIP',
+            'password' => strtolower('HMPANELPASS'),
+            'database' => strtolower('HMPANELDB'),
             'default' => 1,
             'cron' => ' '
         ]);

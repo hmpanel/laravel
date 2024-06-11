@@ -18,7 +18,7 @@ class ShellController extends Controller
     {
         $server = Server::where('server_id', $server_id)->where('status', 0)->firstOrFail();
 
-        $script = Storage::get('cipi/setup.sh');
+        $script = Storage::get('hmpanel/setup.sh');
         $script = Str::replaceArray('???', [
             $server->password,
             $server->database,
@@ -37,7 +37,7 @@ class ShellController extends Controller
     {
         $site = Site::where('site_id', $site_id)->firstOrFail();
 
-        $script = Storage::get('cipi/deploy.sh');
+        $script = Storage::get('hmpanel/deploy.sh');
         $script = str_replace('???USER???', $site->username, $script);
         $script = str_replace('???REPO???', $site->repository, $script);
         $script = str_replace('???BRANCH???', $site->branch, $script);
@@ -53,7 +53,7 @@ class ShellController extends Controller
     */
     public function serversrootreset()
     {
-        $script = Storage::get('cipi/rootreset.sh');
+        $script = Storage::get('hmpanel/rootreset.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -65,7 +65,7 @@ class ShellController extends Controller
     */
     public function newsite()
     {
-        $script = Storage::get('cipi/newsite.sh');
+        $script = Storage::get('hmpanel/newsite.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -78,7 +78,7 @@ class ShellController extends Controller
     */
     public function delsite()
     {
-        $script = Storage::get('cipi/delsite.sh');
+        $script = Storage::get('hmpanel/delsite.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -91,7 +91,7 @@ class ShellController extends Controller
     */
     public function sitepass()
     {
-        $script = Storage::get('cipi/sitepass.sh');
+        $script = Storage::get('hmpanel/sitepass.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -104,7 +104,7 @@ class ShellController extends Controller
     */
     public function patch202112091()
     {
-        $script = Storage::get('cipi/patch202112091.sh');
+        $script = Storage::get('hmpanel/patch202112091.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -116,7 +116,7 @@ class ShellController extends Controller
     */
     public function patch202112101()
     {
-        $script = Storage::get('cipi/patch202112101.sh');
+        $script = Storage::get('hmpanel/patch202112101.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);
@@ -128,7 +128,7 @@ class ShellController extends Controller
     */
     public function patch202112181()
     {
-        $script = Storage::get('cipi/patch202112181.sh');
+        $script = Storage::get('hmpanel/patch202112181.sh');
 
         return response($script)
                 ->withHeaders(['Content-Type' =>'application/x-sh']);

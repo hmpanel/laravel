@@ -2,7 +2,7 @@
 
 
 @section('title')
-    {{ __('cipi.titles.servers') }}
+    {{ __('hmpanel.titles.servers') }}
 @endsection
 
 
@@ -13,7 +13,7 @@
         <div class="card mb-4">
             <div class="card-header text-right">
                 <button class="btn btn-sm btn-secondary" id="newServer">
-                    <i class="fas fa-plus mr-1"></i><b>{{ __('cipi.new_button', ['type' => __('cipi.server')]) }}</b>
+                    <i class="fas fa-plus mr-1"></i><b>{{ __('hmpanel.new_button', ['type' => __('hmpanel.server')]) }}</b>
                 </button>
             </div>
             <div class="card-body">
@@ -21,11 +21,11 @@
                     <table class="table table-bordered" id="dt" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center d-none d-md-table-cell">{{ __('cipi.name') }}</th>
+                                <th class="text-center d-none d-md-table-cell">{{ __('hmpanel.name') }}</th>
                                 <th class="text-center">IP</th>
-                                <th class="text-center d-none d-lg-table-cell">{{ __('cipi.provider') }}</th>
-                                <th class="text-center d-none d-xl-table-cell">{{ __('cipi.location') }}</th>
-                                <th class="text-center">{{ __('cipi.actions') }}</th>
+                                <th class="text-center d-none d-lg-table-cell">{{ __('hmpanel.provider') }}</th>
+                                <th class="text-center d-none d-xl-table-cell">{{ __('hmpanel.location') }}</th>
+                                <th class="text-center">{{ __('hmpanel.actions') }}</th>
                             </tr>
                         </thead>
                     </table>
@@ -43,50 +43,50 @@
     <div class="modal-dialog" role="document" id="newserverdialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newServerModalLabel">{{ __('cipi.create_server_title') }}</h5>
+                <h5 class="modal-title" id="newServerModalLabel">{{ __('hmpanel.create_server_title') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div id="newserverform">
-                    <label for="newservername">{{ __('cipi.server_name') }}</label>
+                    <label for="newservername">{{ __('hmpanel.server_name') }}</label>
                     <div class="input-group">
                         <input class="form-control" type="text" id="newservername" placeholder="e.g. Production" autocomplete="off" />
                     </div>
                     <div class="space"></div>
-                    <label for="newserverip">{{ __('cipi.server_ip') }}</label>
+                    <label for="newserverip">{{ __('hmpanel.server_ip') }}</label>
                     <div class="input-group">
                         <input class="form-control" type="text" id="newserverip" placeholder="e.g. 123.45.67.89" autocomplete="off" />
                     </div>
                     <div class="space"></div>
-                    <label for="newserverprovider">{{ __('cipi.server_provider') }}</label>
+                    <label for="newserverprovider">{{ __('hmpanel.server_provider') }}</label>
                     <div class="input-group">
                         <input class="form-control" type="text" id="newserverprovider" placeholder="e.g. Digital Ocean" autocomplete="off" />
                     </div>
                     <div class="space"></div>
-                    <label for="newserverlocation">{{ __('cipi.server_location') }}</label>
+                    <label for="newserverlocation">{{ __('hmpanel.server_location') }}</label>
                     <div class="input-group">
                         <input class="form-control" type="text" id="newserverlocation" placeholder="e.g. Amsterdam" autocomplete="off" />
                     </div>
                     <div class="space"></div>
                     <div class="text-center">
-                        <button class="btn btn-primary" type="button" id="submit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="loading"></i></button>
+                        <button class="btn btn-primary" type="button" id="submit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="loading"></i></button>
                     </div>
                 </div>
                 <div id="newserverok" class="d-none">
-                    <p><b>{{ __('cipi.server_setup_title') }}</b>
+                    <p><b>{{ __('hmpanel.server_setup_title') }}</b>
                     <ul>
-                        <li>{!! __('cipi.server_setup_step1') !!}</li>
-                        <li>{!! __('cipi.server_setup_step2') !!}<br>
+                        <li>{!! __('hmpanel.server_setup_step1') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step2') !!}<br>
                             <code><i>ssh root@<span id="newserverssh"></span></i></code></li>
-                        <li>{!! __('cipi.server_setup_step3') !!}<br>
+                        <li>{!! __('hmpanel.server_setup_step3') !!}<br>
                             <code><i>wget -O - {{ URL::to('/sh/setup/') }}/<span id="newserverid"></span> | bash</i></code></li>
-                        <li>{!! __('cipi.server_setup_step4') !!}</li>
-                        <li>{!! __('cipi.server_setup_step5') !!}</li>
-                        <li>{!! __('cipi.server_setup_step6') !!}</li>
-                        <li>{!! __('cipi.server_setup_step7') !!}</li>
-                        <li>{!! __('cipi.server_setup_step8') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step4') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step5') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step6') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step7') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step8') !!}</li>
                     </ul>
                     </p>
                 </div>
@@ -99,24 +99,24 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="installServerModalLabel">{{ __('cipi.server_setup') }}</h5>
+                <h5 class="modal-title" id="installServerModalLabel">{{ __('hmpanel.server_setup') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p><b>{{ __('cipi.server_setup_title') }}</b>
+                <p><b>{{ __('hmpanel.server_setup_title') }}</b>
                     <ul>
-                        <li>{!! __('cipi.server_setup_step1') !!}</li>
-                        <li>{!! __('cipi.server_setup_step2') !!}<br>
+                        <li>{!! __('hmpanel.server_setup_step1') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step2') !!}<br>
                             <code><i>ssh root@<span id="installserverssh"></span></i></code></li>
-                        <li>{!! __('cipi.server_setup_step3') !!}<br>
+                        <li>{!! __('hmpanel.server_setup_step3') !!}<br>
                             <code><i>wget -O - {{ URL::to('/sh/setup/') }}/<span id="installserverid"></span> | bash</i></code></li>
-                        <li>{!! __('cipi.server_setup_step4') !!}</li>
-                        <li>{!! __('cipi.server_setup_step5') !!}</li>
-                        <li>{!! __('cipi.server_setup_step6') !!}</li>
-                        <li>{!! __('cipi.server_setup_step7') !!}</li>
-                        <li>{!! __('cipi.server_setup_step8') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step4') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step5') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step6') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step7') !!}</li>
+                        <li>{!! __('hmpanel.server_setup_step8') !!}</li>
                     </ul>
                 </p>
                 <div class="space"></div>
@@ -128,22 +128,22 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteServerModalLabel">{{ __('cipi.delete_server') }}</h5>
+                <h5 class="modal-title" id="deleteServerModalLabel">{{ __('hmpanel.delete_server') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.delete_server_confirmation') }} <b><span id="deleteservername"></span></b>?</p>
+                <p>{{ __('hmpanel.delete_server_confirmation') }} <b><span id="deleteservername"></span></b>?</p>
                 <div class="space"></div>
-                <label for="deleteserverip">{{ __('cipi.delete_server_confirmation_ip') }}: <i><span id="deleteserveriptocopy"></span></i></label>
+                <label for="deleteserverip">{{ __('hmpanel.delete_server_confirmation_ip') }}: <i><span id="deleteserveriptocopy"></span></i></label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="deleteserverip" autocomplete="off" />
                 </div>
                 <input type="hidden" id="deleteserverid" value="" />
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-danger" type="button" id="delete">{{ __('cipi.delete') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingdelete"></i></button>
+                    <button class="btn btn-danger" type="button" id="delete">{{ __('hmpanel.delete') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingdelete"></i></button>
                 </div>
                 <div class="space"></div>
             </div>

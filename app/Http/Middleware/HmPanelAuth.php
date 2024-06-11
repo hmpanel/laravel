@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Firebase\JWT\ExpiredException;
 
-class CipiAuth
+class HmPanelAuth
 {
     /**
      * Handle an incoming request.
@@ -46,7 +46,7 @@ class CipiAuth
 
         if ($token) {
             try {
-                JWT::decode($token, config('cipi.jwt_secret').'-Acs', ['HS256']);
+                JWT::decode($token, config('hmpanel.jwt_secret').'-Acs', ['HS256']);
             } catch (ExpiredException $e) {
                 return response()->json([
                     'message' => 'Given token is expired.',

@@ -299,29 +299,29 @@ class SiteController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => __('cipi.bad_request'),
+                'message' => __('hmpanel.bad_request'),
                 'errors' => $validator->errors()->getMessages()
             ], 400);
         }
 
         if ($request->php) {
-            if (!in_array($request->php, config('cipi.phpvers'))) {
+            if (!in_array($request->php, config('hmpanel.phpvers'))) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
-                    'errors' => __('cipi.invalid_php_version')
+                    'message' => __('hmpanel.bad_request'),
+                    'errors' => __('hmpanel.invalid_php_version')
                 ], 400);
             }
             $php = $request->php;
         } else {
-            $php = config('cipi.default_php');
+            $php = config('hmpanel.default_php');
         }
 
         $server = Server::where('server_id', $request->server_id)->where('status', 1)->first();
 
         if (!$server) {
             return response()->json([
-                'message' => __('cipi.server_not_found_message'),
-                'errors' => __('cipi.server_not_found')
+                'message' => __('hmpanel.server_not_found_message'),
+                'errors' => __('hmpanel.server_not_found')
             ], 404);
         }
 
@@ -338,12 +338,12 @@ class SiteController extends Controller
         }
         if ($conflict) {
             return response()->json([
-                'message' => __('cipi.site_domain_conflict_message'),
-                'errors' => __('cipi.site_domain_conflict')
+                'message' => __('hmpanel.site_domain_conflict_message'),
+                'errors' => __('hmpanel.site_domain_conflict')
             ], 409);
         }
 
-        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('cipi.jwt_secret').'-Pdf');
+        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('hmpanel.jwt_secret').'-Pdf');
 
         $site_id = Str::uuid();
 
@@ -353,7 +353,7 @@ class SiteController extends Controller
         $site->domain     = strtolower($request->domain);
         $site->php        = $php;
         $site->basepath   = $request->basepath;
-        $site->username   = config('cipi.users_prefix').hash('crc32', (Str::uuid()->toString())).rand(1, 9);
+        $site->username   = config('hmpanel.users_prefix').hash('crc32', (Str::uuid()->toString())).rand(1, 9);
         $site->password   = Str::random(24);
         $site->database   = Str::random(24);
         $site->deploy     = ' ';
@@ -428,7 +428,7 @@ class SiteController extends Controller
      *                  property="repository",
      *                  description="Github repository",
      *                  type="string",
-     *                  example="andreapollastri/cipi",
+     *                  example="andreapollastri/hmpanel",
      *             ),
      *            @OA\Property(
      *                  property="branch",
@@ -517,7 +517,7 @@ class SiteController extends Controller
      *                       property="repository",
      *                       description="Github repository",
      *                       type="string",
-     *                       example="andreapollastri/cipi",
+     *                       example="andreapollastri/hmpanel",
      *                 ),
      *                 @OA\Property(
      *                       property="branch",
@@ -572,8 +572,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -583,7 +583,7 @@ class SiteController extends Controller
             ]);
             if ($validator->fails()) {
                 return response()->json([
-                    'message' => __('cipi.bad_request'),
+                    'message' => __('hmpanel.bad_request'),
                     'errors' => $validator->errors()->getMessages()
                 ], 400);
             }
@@ -594,15 +594,15 @@ class SiteController extends Controller
                 foreach ($sites as $checksite) {
                     if (strtolower($request->domain) == $checksite->domain) {
                         return response()->json([
-                            'message' => __('cipi.server_conflict_domain_message'),
-                            'errors' => __('cipi.server_conflict')
+                            'message' => __('hmpanel.server_conflict_domain_message'),
+                            'errors' => __('hmpanel.server_conflict')
                         ], 409);
                     }
                     foreach ($checksite->aliases as $alias) {
                         if (strtolower($request->domain) == $alias->domain) {
                             return response()->json([
-                                'message' => __('cipi.server_conflict_alias_message'),
-                                'errors' => __('cipi.server_conflict')
+                                'message' => __('hmpanel.server_conflict_alias_message'),
+                                'errors' => __('hmpanel.server_conflict')
                             ], 409);
                         }
                     }
@@ -786,7 +786,7 @@ class SiteController extends Controller
      *                       property="repository",
      *                       description="Github repository",
      *                       type="string",
-     *                       example="andreapollastri/cipi",
+     *                       example="andreapollastri/hmpanel",
      *                 ),
      *                 @OA\Property(
      *                       property="branch",
@@ -845,8 +845,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -919,15 +919,15 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
         if ($site->panel) {
             return response()->json([
-                'message' => __('cipi.bad_request_default_site_delete'),
-                'errors' => __('cipi.bad_request')
+                'message' => __('hmpanel.bad_request_default_site_delete'),
+                'errors' => __('hmpanel.bad_request')
             ], 400);
         }
 
@@ -979,8 +979,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1047,8 +1047,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1059,7 +1059,7 @@ class SiteController extends Controller
 
         SiteUserPwdSSH::dispatch($site, $newpassword)->delay(Carbon::now()->addSeconds(1));
 
-        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('cipi.jwt_secret').'-Pdf');
+        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('hmpanel.jwt_secret').'-Pdf');
 
         return response()->json([
             'password'  => $site->password,
@@ -1124,8 +1124,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1136,7 +1136,7 @@ class SiteController extends Controller
 
         SiteDbPwdSSH::dispatch($site, $last_password)->delay(Carbon::now()->addSeconds(1));
 
-        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('cipi.jwt_secret').'-Pdf');
+        $pdftoken = JWT::encode(['iat' => time(),'exp' => time() + 180], config('hmpanel.jwt_secret').'-Pdf');
 
         return response()->json([
             'password'  => $site->database,
@@ -1148,7 +1148,7 @@ class SiteController extends Controller
     public function pdf(string $site_id, string $pdftoken)
     {
         try {
-            JWT::decode($pdftoken, config('cipi.jwt_secret').'-Pdf', ['HS256']);
+            JWT::decode($pdftoken, config('hmpanel.jwt_secret').'-Pdf', ['HS256']);
         } catch (\Throwable $th) {
             abort(403);
         }
@@ -1229,8 +1229,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1311,8 +1311,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1322,7 +1322,7 @@ class SiteController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => __('cipi.bad_request'),
+                'message' => __('hmpanel.bad_request'),
                 'errors' => $validator->errors()->getMessages()
             ], 400);
         }
@@ -1340,8 +1340,8 @@ class SiteController extends Controller
         }
         if ($conflict) {
             return response()->json([
-                'message' => __('cipi.site_domain_conflict_message'),
-                'errors' => __('cipi.site_domain_conflict')
+                'message' => __('hmpanel.site_domain_conflict_message'),
+                'errors' => __('hmpanel.site_domain_conflict')
             ], 409);
         }
 
@@ -1409,8 +1409,8 @@ class SiteController extends Controller
 
         if (!$site) {
             return response()->json([
-                'message' => __('cipi.site_not_found_message'),
-                'errors' => __('cipi.site_not_found')
+                'message' => __('hmpanel.site_not_found_message'),
+                'errors' => __('hmpanel.site_not_found')
             ], 404);
         }
 
@@ -1418,8 +1418,8 @@ class SiteController extends Controller
 
         if (!$alias) {
             return response()->json([
-                'message' => __('cipi.alias_not_found_message'),
-                'errors' => __('cipi.alias_not_found')
+                'message' => __('hmpanel.alias_not_found_message'),
+                'errors' => __('hmpanel.alias_not_found')
             ], 404);
         }
 

@@ -2,7 +2,7 @@
 
 
 @section('title')
-    {{ __('cipi.titles.server') }}
+    {{ __('hmpanel.titles.server') }}
 @endsection
 
 
@@ -10,7 +10,7 @@
 @section('content')
 <ol class="breadcrumb mb-4">
     <li class="ml-1 breadcrumb-item active">IP:<b><span class="ml-1" id="serveriptop"></span></b></li>
-    <li class="ml-1 breadcrumb-item active">{{ __('cipi.sites') }}:<b><span class="ml-1" id="serversites"></span></b></li>
+    <li class="ml-1 breadcrumb-item active">{{ __('hmpanel.sites') }}:<b><span class="ml-1" id="serversites"></span></b></li>
     <li class="ml-1 breadcrumb-item active">Ping:<b><span class="ml-1" id="serverping"><i class="fas fa-circle-notch fa-spin"></i></span></b></li>
 </ol>
 <div class="row">
@@ -18,7 +18,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-microchip fs-fw mr-1"></i>
-                {{ __('cipi.server_cpu_realtime_load') }}
+                {{ __('hmpanel.server_cpu_realtime_load') }}
             </div>
             <div class="card-body">
                 <canvas id="cpuChart" width="100%" height="40"></canvas>
@@ -30,7 +30,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-memory fs-fw mr-1"></i>
-                {{ __('cipi.server_ram_realtime_load') }}
+                {{ __('hmpanel.server_ram_realtime_load') }}
             </div>
             <div class="card-body">
                 <canvas id="ramChart" width="100%" height="40"></canvas>
@@ -44,31 +44,31 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-info-circle fs-fw mr-1"></i>
-                {{ __('cipi.server_information') }}
+                {{ __('hmpanel.server_information') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.server_name') }}:</p>
+                <p>{{ __('hmpanel.server_name') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. Production" id="servername" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.server_ip') }}:</p>
+                <p>{{ __('hmpanel.server_ip') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. 123.123.123.123" id="serverip" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.server_provider') }}:</p>
+                <p>{{ __('hmpanel.server_provider') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. Digital Ocean" id="serverprovider" autocomplete="off" />
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.server_location') }}:</p>
+                <p>{{ __('hmpanel.server_location') }}:</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="e.g. Amsterdam" id="serverlocation" autocomplete="off" />
                 </div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="updateServer">{{ __('cipi.update') }}</button>
+                    <button class="btn btn-primary" type="button" id="updateServer">{{ __('hmpanel.update') }}</button>
                 </div>
                 <div class="space"></div>
                 <div class="space"></div>
@@ -80,32 +80,32 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-power-off fs-fw mr-1"></i>
-                {{ __('cipi.system_services') }}
+                {{ __('hmpanel.system_services') }}
             </div>
             <div class="card-body">
                 <p>nginx</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" id="restartnginx">{{ __('cipi.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingnginx"></i></button>
+                    <button class="btn btn-warning" type="button" id="restartnginx">{{ __('hmpanel.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingnginx"></i></button>
                 </div>
                 <div class="space"></div>
                 <p>PHP-FPM</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" id="restartphp">{{ __('cipi.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingphp"></i></button>
+                    <button class="btn btn-warning" type="button" id="restartphp">{{ __('hmpanel.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingphp"></i></button>
                 </div>
                 <div class="space"></div>
                 <p>MySql</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" id="restartmysql">{{ __('cipi.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingmysql"></i></button>
+                    <button class="btn btn-warning" type="button" id="restartmysql">{{ __('hmpanel.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingmysql"></i></button>
                 </div>
                 <div class="space"></div>
                 <p>Redis</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" id="restartredis">{{ __('cipi.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingredis"></i></button>
+                    <button class="btn btn-warning" type="button" id="restartredis">{{ __('hmpanel.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingredis"></i></button>
                 </div>
                 <div class="space"></div>
                 <p>Supervisor</p>
                 <div class="text-center">
-                    <button class="btn btn-warning" type="button" id="restartsupervisor">{{ __('cipi.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingsupervisor"></i></button>
+                    <button class="btn btn-warning" type="button" id="restartsupervisor">{{ __('hmpanel.restart') }} <i class="fas fa-circle-notch fa-spin d-none" id="loadingsupervisor"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -115,10 +115,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-tools fs-fw mr-1"></i>
-                {{ __('cipi.tools') }}
+                {{ __('hmpanel.tools') }}
             </div>
             <div class="card-body">
-                <p>{{ __('cipi.php_cli_version') }}:</p>
+                <p>{{ __('hmpanel.php_cli_version') }}:</p>
                 <div class="input-group">
                     <select class="form-control" id="phpver">
                         <option value="8.1" id="php81">8.1</option>
@@ -130,22 +130,22 @@
                     </div>
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.manage_cron_jobs') }}:</p>
+                <p>{{ __('hmpanel.manage_cron_jobs') }}:</p>
                 <div>
-                    <button class="btn btn-primary" type="button" id="editcrontab">{{ __('cipi.edit_crontab') }}</button>
+                    <button class="btn btn-primary" type="button" id="editcrontab">{{ __('hmpanel.edit_crontab') }}</button>
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.reset_cipi_password') }}:</p>
+                <p>{{ __('hmpanel.reset_hmpanel_password') }}:</p>
                 <div>
-                    <button class="btn btn-danger" type="button" id="rootreset">{{ __('cipi.require_reset_cipi_password') }}</button>
+                    <button class="btn btn-danger" type="button" id="rootreset">{{ __('hmpanel.require_reset_hmpanel_password') }}</button>
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.hd_memory_usage') }}:</p>
+                <p>{{ __('hmpanel.hd_memory_usage') }}:</p>
                 <div>
-                    <span class="btn" id="hd"><i class="fas fa-circle-notch fa-spin" title="{{ __('cipi.loading_data') }}"></i></span>
+                    <span class="btn" id="hd"><i class="fas fa-circle-notch fa-spin" title="{{ __('hmpanel.loading_data') }}"></i></span>
                 </div>
                 <div class="space"></div>
-                <p>{{ __('cipi.cipi_build_version') }}:</p>
+                <p>{{ __('hmpanel.hmpanel_build_version') }}:</p>
                 <div>
                     <span class="btn btn-secondary" id="serverbuild"><i class="fas fa-circle-notch fa-spin"></i></span>
                 </div>
@@ -164,16 +164,16 @@
     <div class="modal-dialog" role="document" id="updateserverdialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateServerModalLabel">{{ __('cipi.update_server_modal_title') }}</h5>
+                <h5 class="modal-title" id="updateServerModalLabel">{{ __('hmpanel.update_server_modal_title') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.update_server_modal_text') }}</p>
-                <p class="d-none" id="ipnotice"><b>{!! __('cipi.update_server_modal_ip') !!}</b></p>
+                <p>{{ __('hmpanel.update_server_modal_text') }}</p>
+                <p class="d-none" id="ipnotice"><b>{!! __('hmpanel.update_server_modal_ip') !!}</b></p>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="submit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="loading"></i></button>
+                    <button class="btn btn-primary" type="button" id="submit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="loading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -184,17 +184,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="crontabModalLabel">{{ __('cipi.server_crontab') }}</h5>
+                <h5 class="modal-title" id="crontabModalLabel">{{ __('hmpanel.server_crontab') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.server_crontab_edit') }}:</p>
+                <p>{{ __('hmpanel.server_crontab_edit') }}:</p>
                 <div id="crontab" style="height:250px;width:100%;"></div>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary" type="button" id="crontabsubmit">{{ __('cipi.save') }} <i class="fas fa-circle-notch fa-spin d-none" id="crontableloading"></i></button>
+                    <button class="btn btn-primary" type="button" id="crontabsubmit">{{ __('hmpanel.save') }} <i class="fas fa-circle-notch fa-spin d-none" id="crontableloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -205,16 +205,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="rootresetModalLabel">{{ __('cipi.require_password_reset_modal_title') }}</h5>
+                <h5 class="modal-title" id="rootresetModalLabel">{{ __('hmpanel.require_password_reset_modal_title') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('cipi.require_password_reset_modal_text') }}</p>
+                <p>{{ __('hmpanel.require_password_reset_modal_text') }}</p>
                 <div class="space"></div>
                 <div class="text-center">
-                    <button class="btn btn-danger" type="button" id="rootresetsubmit">{{ __('cipi.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="rootresetloading"></i></button>
+                    <button class="btn btn-danger" type="button" id="rootresetsubmit">{{ __('hmpanel.confirm') }} <i class="fas fa-circle-notch fa-spin d-none" id="rootresetloading"></i></button>
                 </div>
                 <div class="space"></div>
             </div>
@@ -288,7 +288,7 @@
                 if(data.build) {
                     $('#serverbuild').html(data.build);
                 } else {
-                    $('#serverbuild').html('{{ __('cipi.unknown') }}');
+                    $('#serverbuild').html('{{ __('hmpanel.unknown') }}');
                 }
                 switch (data.php) {
                     case '8.1':
@@ -321,7 +321,7 @@
             type: 'GET',
             beforeSend: function() {
                 $('#serverping').empty();
-                $('#serverping').html('<i class="fas fa-circle-notch fa-spin" title="{{ __('cipi.loading_data') }}"></i>');
+                $('#serverping').html('<i class="fas fa-circle-notch fa-spin" title="{{ __('hmpanel.loading_data') }}"></i>');
             },
             success: function(data) {
                 $('#serverping').empty();
@@ -345,7 +345,7 @@
                 'php': $('#phpver').val(),
             }),
             beforeSend: function() {
-                $('#changephp').html('<i class="fas fa-circle-notch fa-spin" title="{{ __('cipi.loading_please_wait') }}"></i>');
+                $('#changephp').html('<i class="fas fa-circle-notch fa-spin" title="{{ __('hmpanel.loading_please_wait') }}"></i>');
             },
             success: function(data) {
                 $('#changephp').empty();
@@ -437,7 +437,7 @@
             url: '/api/servers/{{ $server_id }}/rootreset',
             type: 'POST',
             success: function(data) {
-                success('{{ __('cipi.new_password_success') }}:<br><b>'+data.password+'</b>');
+                success('{{ __('hmpanel.new_password_success') }}:<br><b>'+data.password+'</b>');
                 $(window).scrollTop(0);
                 $('#rootresetModal').modal('toggle');
             },

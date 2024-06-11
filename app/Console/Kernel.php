@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('servers:setupcheck')->everyMinute();        
-        $schedule->command('cipi:logrotate')->dailyAt('00:00');
-        $schedule->command('cipi:activesetupcount')->dailyAt('03:03');
+        $schedule->command('hmpanel:logrotate')->dailyAt('00:00');
+        $schedule->command('hmpanel:activesetupcount')->dailyAt('03:03');
     }
 
     /**
