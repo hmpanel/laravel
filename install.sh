@@ -37,21 +37,18 @@ bgpurple=$(tput setab 5)
 #################################################### HMPANEL SETUP ######
 
 
-
 # LOGO
 clear
-echo "${green}${bold}"
 echo ""
-echo " ██████ ██ ██████  ██" 
-echo "██      ██ ██   ██ ██" 
-echo "██      ██ ██████  ██" 
-echo "██      ██ ██      ██" 
-echo " ██████ ██ ██      ██" 
+echo " _                ______                      _ "
+echo "| |               | ___ \                    | |"
+echo "| |__   _ __ ___  | |_/ /  __ _  _ __    ___ | |"
+echo "| '_  \| '_ ` _ \ |  __/  / _` || '_ \  / _ \| |"
+echo "| | | || | | | | || |    | (_| || | | ||  __/| |"
+echo "|_| |_||_| |_| |_|\_|     \__,_||_| |_| \___||_|"
 echo ""
 echo "Installation has been started... Hold on!"
-echo "${reset}"
-sleep 3s
-
+echo "Installation has been started... Hold on!"f
 
 
 # OS CHECK
