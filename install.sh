@@ -137,13 +137,15 @@ WELCOME=/etc/motd
 sudo touch $WELCOME
 sudo cat > "$WELCOME" <<EOF
 
- ██████ ██ ██████  ██ 
-██      ██ ██   ██ ██ 
-██      ██ ██████  ██ 
-██      ██ ██      ██
- ██████ ██ ██      ██
+    __                  ____                           __
+   / /_    ____ ___    / __ \  ____ _   ____   ___    / /
+  / __ \  / __ `__ \  / /_/ / / __ `/  / __ \ / _ \  / / 
+ / / / / / / / / / / / ____/ / /_/ /  / / / //  __/ / /  
+/_/ /_/ /_/ /_/ /_/ /_/      \__,_/  /_/ /_/ \___/ /_/   
+                                                         
 
-With great power comes great responsibility...
+The most common way people give up their power is by thinking 
+they don't have any...
 
 EOF
 
@@ -215,8 +217,6 @@ sudo systemctl start nginx.service
 sudo rpl -i -w "http {" "http { limit_req_zone \$binary_remote_addr zone=one:10m rate=1r/s; fastcgi_read_timeout 300;" /etc/nginx/nginx.conf
 sudo rpl -i -w "http {" "http { limit_req_zone \$binary_remote_addr zone=one:10m rate=1r/s; fastcgi_read_timeout 300;" /etc/nginx/nginx.conf
 sudo systemctl enable nginx.service
-
-
 
 
 
