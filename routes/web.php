@@ -21,6 +21,8 @@ Route::get('/', function () {
     return 'Domain/Subdomain not configured on this Server!';
 });
 
+Route::get('/pdf/{site_id}/{token}', [SiteController::class, 'pdf']);
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -49,4 +51,4 @@ Route::get('/settings', function () {
     return view('settings');
 });
 
-Route::get('/pdf/{site_id}/{token}', [SiteController::class, 'pdf']);
+
